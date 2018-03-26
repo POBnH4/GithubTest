@@ -31,5 +31,5 @@ app.post('/quotes', function (req, res) {
   if (err) throw err;
   console.log('saved to database')
   res.redirect('/')
-  });
-});
+  })
+})
