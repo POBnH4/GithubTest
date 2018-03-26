@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var knockknock = require('knock-knock-jokes');
+
 app.get('/', function(req,res){
   res.writeHead(200,{'Content-Type' : 'text/html'});
   var randomJoke = knockknock()
