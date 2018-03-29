@@ -1,11 +1,3 @@
-/**
- * @Author: John Isaacs <john>
- * @Date:   18-Mar-182018
- * @Filename: server.js
- * @Last modified by:   john
- * @Last modified time: 27-Mar-182018
- */
-
 
 
 const MongoClient = require('mongodb').MongoClient; //npm install mongodb@2.2.32
