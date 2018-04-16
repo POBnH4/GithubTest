@@ -1,0 +1,123 @@
+{ "smr": [
+  {
+    "name":"Aberdeen MRT",
+    "lat":"57.1526",
+    "long":"-2.1100"
+  },
+  {
+    "name":"Arran MRT",
+    "lat":"55.57",
+    "long":"-5.25"
+  },
+  {
+    "name":"Arrochar MRT",
+    "lat":"56.200743",
+    "long":"-4.7467273"
+  },
+  {
+    "name":"Assynt MRT",
+    "lat":"58.215",
+    "long":"-5.0505"
+  },
+  {
+    "name":"Borders SAR Unit",
+    "lat":"55.59851",
+    "long":"-2.43357"
+  },
+  {
+    "name":"Braemar MRT",
+    "lat":"57.006",
+    "long":"-3.399"
+  },
+  {
+    "name":"Cairngorm MRT",
+    "lat":"57.194",
+    "long":"-3.823"
+  },
+  {
+    "name":"Dundonnell MRT",
+    "lat":"57.83881",
+    "long":"-5.21147"
+  },
+  {
+    "name":"Galloway MRT",
+    "lat":"54.958",
+    "long":"-4.492"
+  },
+  {
+    "name":"Glencoe MRT",
+    "lat":"56.68282",
+    "long":"-5.10598"
+  },
+  {
+    "name":"Glenelg MRT",
+    "lat":"57.212",
+    "long":"-5.624"
+  },
+  {
+    "name":"Glenmore Lodge MRT",
+    "lat":"57.1643",
+    "long":"-3.6763"
+  },
+  {
+    "name":"Killin MRT",
+    "lat":"56.466",
+    "long":"-4.318"
+  },
+  {
+    "name":"Kintail MRT",
+    "lat":"57.1221",
+    "long":"-5.218"
+  },
+  {
+    "name":"Lochaber MRT",
+    "lat":"56.8198",
+    "long":"-5.1052"
+  },
+  {
+    "name":"Lomond MRT",
+    "lat":"56.0655",
+    "long":"-4.4500"
+  },
+  {
+    "name":"Moffat MRT",
+    "lat":"55.3352",
+    "long":"-3.4403"
+  },
+  {
+    "name":"Hebrides SAR",
+    "lat":"558.2094",
+    "long":"-6.3849"
+  },
+  {
+    "name":"Oban MRT",
+    "lat":"56.4152",
+    "long":"-5.4710"
+  },
+  {
+    "name":"Ochils MRT",
+    "lat":"56.1383",
+    "long":"-3.7696"
+  },
+  {
+    "name":"Skye MRT",
+    "lat":"57.4125",
+    "long":"-6.1960"
+  },
+  {
+    "name":"Tayside MRT",
+    "lat":"56.5894",
+    "long":"-3.3378"
+  },
+  {
+    "name":"Torridon MRT",
+    "lat":"57.5469",
+    "long":"-5.5134"
+  },
+  {
+    "name":"Tweed Valley MRT",
+    "lat":"55.5987",
+    "long":"-2.7219"
+  }
+]
+}
