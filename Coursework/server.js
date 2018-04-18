@@ -25,8 +25,8 @@ MongoClient.connect(url, function(err, database) {
 //you need to complete these
 
 app.get('/', function(req,res) {
-  res.render('index')
-}); 
+  res.render('views/index')
+});
 
 app.get('/userDetails', function(req,res) {
     if(db.collection('users').find(req.body).count() == 0){
