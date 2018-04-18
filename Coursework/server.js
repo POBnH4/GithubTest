@@ -26,7 +26,7 @@ MongoClient.connect(url, function(err, database) {
 
 app.get('/', function(req,res) {
   res.render('index')
-});
+}); 
 
 app.get('/userDetails', function(req,res) {
     if(db.collection('users').find(req.body).count() == 0){
