@@ -58,7 +58,7 @@ img {
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    -ms-transform:trsanslate(-50%,-50%)
+    -ms-transform:translate(-50%,-50%)
 }
 
 
@@ -77,14 +77,27 @@ nav {
 
 .row{
   background-color:  #F5F5F5;
-  height:200px;
+  height:180px;
   width: 100%;
   margin-bottom: 10px;
   margin-top: 50px;
 }
 
+.row h3{
+  padding-top: 10px;
+}
+
 .row p{
-  padding-top: 20px;
+  padding: 5px 10px 0 10px;
+
+}
+
+.row a:link{
+  text-decoration: none;
+}
+
+.row a{
+  color: black;
 }
 
 .sticky {
@@ -94,8 +107,8 @@ nav {
 }
 
 .additional-info-images{
-  height:200px;
-  width:50%;
+  height:100%;
+  width:30%;
   float: left;
 
 }
@@ -260,34 +273,6 @@ footer div {
 #logo-footer{
   height:40px;
   width:40%;
-}
-
-
-#successAlert {
-    padding: 20px;
-    background-color: #008000;
-    color: white;
-}
-
-#failAlert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-}
-
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: black;
 }
 
 
