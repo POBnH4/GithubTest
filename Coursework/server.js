@@ -51,6 +51,8 @@ app.get('/registerDetails', function(req,res) {
           password: req.body.password
         }
       )
+      alert("You have officially registered!");
+
   }else{
       alert("A user already exists with the email!");
   }
