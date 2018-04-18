@@ -96,6 +96,9 @@
         <script src="js/stickynav.js"></script>
         <script src="js/loginWindowJS.js"></script>
         <script src="js/loginWindowDB.js"></script>
+        <script src="js/Alerts.js"></script>
+
+
 
 
          <!-- - - - - - - - - - - - - POP UP -> LOGIN - - - - - - - - - - - - - - - - - - -->
@@ -189,6 +192,18 @@
               </form>
               </div>
 
+<!-- - - - - - - - - - - - - POP UP -> SUCCESSFULLY REGISTERED - - - - - - - - - - - - - - - - - - -->
 
+           <div id = "successAlert">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             <strong>Success!</strong>You have successfully registered!.
+           </div>
+
+<!-- - - - - - - - - - - - - POP UP -> UNSUCCESSFUllY REGISTERED - - - - - - - - - - - - - - - - - - -->
+
+           <div id ="failAlert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <strong>Unsuccessful!</strong>That username is already used!.
+           </div>
     </body>
 </html>
