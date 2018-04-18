@@ -42,7 +42,7 @@ app.get('/userDetails', function(req,res) {
 //- - - -- - - -- - - - REGISTER  - - - - - - - - - - - - - -  --
 
 app.get('/registerDetails', function(req,res) {
-  if(db.collection('users').find(req.body).count() == 0){
+  //if(db.collection('users').find(req.body).count() == 0){
       var info = {
          email: req.body.email,
          name:req.body.name,
@@ -55,9 +55,9 @@ app.get('/registerDetails', function(req,res) {
       })
       alert("You have officially registered!");
       // app.post('/register', function (req, res) { })
-  }else{
-      alert("A user already exists with the email!");
-  }
+  //}else{
+  //    alert("A user already exists with the email!");
+  //}
 });
 
 
