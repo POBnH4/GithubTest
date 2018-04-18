@@ -3,6 +3,9 @@ const url = "mongodb://localhost:27017/users";
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
+const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})";
+//the password must contain at least one lowercase letter,
+// one uppercase letter, one digit, and be between 8 and 20 characters;
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());       // to support JSON-encoded
@@ -39,8 +42,15 @@ app.get('/userDetails', function(req,res) {
 
 //- - - -- - - -- - - - REGISTER  - - - - - - - - - - - - - -  --
 
+
+// if(passwordValidity.test(req.body.password)){
+//   register...
+// }else{
+//   alert("You password must contain at least one lowercase letter," +
+//    "one uppercase letter, one digit, and be between 8 and 20 characters;")
+// }
 app.get('/registerDetails', function(req,res) {
-  //if(db.collection('users').find(req.body).count() == 0){
+  if(db.collection('users').find(req.body).count() == 0){
       var info = {
          email: req.body.email,
          name:req.body.name,
@@ -52,10 +62,10 @@ app.get('/registerDetails', function(req,res) {
         res.redirect('/')
       })
       alert("You have officially registered!");
-      // app.post('/register', function (req, res) { })
-  //}else{
-  //    alert("A user already exists with the email!");
-  //}
+      app.post('/register', function (req, res) { })
+  }else{
+      alert("A user already exists with the email!");
+  }
 });
 
 
@@ -64,28 +74,31 @@ app.get('/registerDetails', function(req,res) {
 
 function getRandomPassword(){
 
-  const LENGTH_OF_PASSWORD = 16;
+  const LENGTH_OF_PASSWORD = 14;
   const CHANCE_OF_A_NUMBER = 20;
   const MAKE_THE_NUMBER_IN_HALF = 2;
   const MAKE_CHANCE_SMALLER = 4;
 
   var alphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
   var numbers = "0123456789";
-  var newPassword = "";
+  var newPassword;
 
   //if the gate number is more than half of the password's length
   //add a random number(character) to the newPassword string;
   //else add a random lowercase/Uppercase letter to the newPassword string;
-
-  for(var i = 0; i < LENGTH_OF_PASSWORD; i++){
-    var gate = Math.floor(Math.random() * CHANCE_OF_A_NUMBER);
-    if(gate >= (CHANCE_OF_A_NUMBER / MAKE_THE_NUMBER_IN_HALF) + MAKE_CHANCE_SMALLER){
-      var randomNumber = Math.floor(Math.random() * numbers.length);
-      newPassword += numbers.charAt(randomNumber);
-    }else{
-      var randomLetter = Math.floor(Math.random() * alphabet.length);
-      newPassword += alphabet.charAt(randomLetter);
-    }
+  while(true){
+   newPassword = "";
+   for(var i = 0; i < LENGTH_OF_PASSWORD; i++){
+     var gate = Math.floor(Math.random() * CHANCE_OF_A_NUMBER);
+     if(gate >= (CHANCE_OF_A_NUMBER / MAKE_THE_NUMBER_IN_HALF) + MAKE_CHANCE_SMALLER){
+       var randomNumber = Math.floor(Math.random() * numbers.length);
+       newPassword += numbers.charAt(randomNumber);
+     }else{
+       var randomLetter = Math.floor(Math.random() * alphabet.length);
+       newPassword += alphabet.charAt(randomLetter);
+     }
+   }
+   if(PASSWORD_VALIDITY.test(newPassword)){ break;}
   }
   return newPassword;
 }
@@ -110,12 +123,19 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   };
 
   if(db.collection('users').find(req.body.email).count() == 1){
-
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
       } else {
         console.log('Email sent: ' + info.response);
+
+        // var user = {}
+        // var newValues = {$set: {}};
+        // db.collection('users').updateOne(user,newValues, function(err,result){
+        //   if(err) throw err;
+        //   res.redirect('/');
+        // });
+
       }
     });
   }else{
