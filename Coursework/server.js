@@ -5,14 +5,11 @@ const bodyParser = require('body-parser')
 const app = express();
 
 app.use(express.static(__dirname + "/public"));
-
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
-
 app.use(bodyParser.urlencoded({extended: true}))
-// set the view engine to ejs
 app.set('view engine', 'ejs');
 
 var db;
@@ -21,14 +18,14 @@ MongoClient.connect(url, function(err, database) {
   if (err) throw err;
   db = database;
   app.listen(8080);
-  console.log('listening');
+  console.log('listening....');
 });
-
-//you need to complete these
 
 app.get('/', function(req,res) {
   res.render('index')
 });
+
+// ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
 app.get('/userDetails', function(req,res) {
     if(db.collection('users').find(req.body).count() == 0){
@@ -41,18 +38,23 @@ app.get('/userDetails', function(req,res) {
     }
 });
 
+
+//- - - -- - - -- - - - REGISTER  - - - - - - - - - - - - - -  --
+
 app.get('/registerDetails', function(req,res) {
   if(db.collection('users').find(req.body).count() == 0){
-      var varUsername = req.body.email, varName = req.body.name, varPassword = req.body.password;
-      db.users.insert(
-        {
-          email: req.body.email,
-          name:req.body.name,
-          password: req.body.password
-        }
-      )
+      var info = {
+         email: req.body.email,
+         name:req.body.name,
+         password: req.body.password
+       };
+      db.collection('users').insert(info, function(err, result) {
+        if (err) throw err;
+        console.log('Saved to database')
+        res.redirect('/')
+      })
       alert("You have officially registered!");
-
+      // app.post('/register', function (req, res) { })
   }else{
       alert("A user already exists with the email!");
   }
@@ -96,16 +98,17 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'youremail@gmail.com',
-      pass: 'yourpassword'
+      user: 'myEmail@gmail.com',
+      pass: 'myPassword'
     }
   });
 
   var mailOptions = {
-    from: 'youremail@gmail.com',
+    from: 'myEmail@gmail.com',
     to: req.body.email,
     subject: 'MunroSpotter reset password',
-    text: 'Greetings, Mr/Mrs.Your new password is: ' + newPassword
+    text: 'Greetings, Mr/Mrs.+ ' + 'Your new password is: ' + newPassword
+     // get a person's name from the database and add it after Mr/Mrs.
   };
 
   if(db.collection('users').find(req.body.email).count() == 1){
@@ -123,14 +126,3 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   }
 
 });
-
-
-//-     -   -   -   -   -   -   -  REGISTER -  -   -   -      -   -   -   -   -
-
-app.post('/register', function (req, res) {
-  db.collection('users').insert(req.body, function(err, result) {
-    if (err) throw err;
-    console.log('saved to database')
-    res.redirect('/')
-  })
-})
