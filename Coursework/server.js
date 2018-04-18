@@ -34,7 +34,7 @@ app.get('/userDetails', function(req,res) {
              " click the button register below.");
         //shouldnt be an alert!
     }else{
-      // login in
+      // login in information....
     }
 });
 
