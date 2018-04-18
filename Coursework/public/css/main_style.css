@@ -37,7 +37,7 @@ header {
 }
 
 .parallax {
-    background-image: url("../img/photoThree.jpg");
+    background-image: url("img/photoThree.jpg");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
