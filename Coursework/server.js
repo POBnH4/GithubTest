@@ -3,7 +3,7 @@ const url = "mongodb://localhost:27017/users";
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})";
+const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
 
