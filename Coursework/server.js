@@ -1,14 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/";
+const url = "mongodb://localhost:27017/users";
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 
 app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
+app.use(bodyParser.json());       // to support JSON-encoded
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 
@@ -48,7 +46,7 @@ app.get('/registerDetails', function(req,res) {
          name:req.body.name,
          password: req.body.password
        };
-      db.collection('users').insert(info, function(err, result) {
+      db.collection('users').save(info, function(err, result) {
         if (err) throw err;
         console.log('Saved to database')
         res.redirect('/')
