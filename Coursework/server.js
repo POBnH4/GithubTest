@@ -60,7 +60,7 @@ app.get('/registerDetails', function(req,res) {
 
 function getRandomPassword(){
 
-  const LENGTH_OF_PASSWORD = 12;
+  const LENGTH_OF_PASSWORD = 16;
   const CHANCE_OF_A_NUMBER = 20;
   const MAKE_THE_NUMBER_IN_HALF = 2;
   const MAKE_CHANCE_SMALLER = 4;
