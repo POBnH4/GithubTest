@@ -73,7 +73,7 @@ function getRandomPassword(){
   //add a random number(character) to the newPassword string;
   //else add a random lowercase/Uppercase letter to the newPassword string;
 
-  for(int i = 0; i < LENGTH_OF_PASSWORD; i++){
+  for(var i = 0; i < LENGTH_OF_PASSWORD; i++){
     var gate = Math.floor(Math.random() * CHANCE_OF_A_NUMBER);
     if(gate >= (CHANCE_OF_A_NUMBER / MAKE_THE_NUMBER_IN_HALF) + MAKE_CHANCE_SMALLER){
       var randomNumber = Math.floor(Math.random() * numbers.length);
