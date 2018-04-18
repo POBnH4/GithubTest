@@ -25,7 +25,7 @@ MongoClient.connect(url, function(err, database) {
 //you need to complete these
 
 app.get('/', function(req,res) {
-  res.render('/index')
+  res.render('Coursework/index')
 });
 
 app.get('/userDetails', function(req,res) {
