@@ -142,13 +142,19 @@ app.get('/forgottenPasswordDetails', function(req,res) {
      // get a person's name from the database and add it after Mr/Mrs.
   }
 
-  db.collection('users').count({"email":req.body.email}) == USER_EXISTS){
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-
+  db.collection('users').count({"email":req.body.email}).then((occurrences) => {
+      if(occurrences >= USER_EXISTS){
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+      }else{
+        console.log('connection not established!');
+      }
+  });
         // var user = {}
         // var newValues = {$set: {}};
         // db.collection('users').updateOne(user,newValues, function(err,result){
