@@ -67,14 +67,13 @@ function registerNewUser(){
            console.log('Saved to database')
            alert("You have officially registered!");
            res.redirect('/')
-         })
-       }
+         });
+       });
 
      }else{
           alert("A user already exists with the email!");
      }
   });
- });
 }
 
 
