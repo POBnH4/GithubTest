@@ -36,7 +36,6 @@ app.post('/userDetails', function(req,res) {
          if(occurences == USER_EXIST){
            console.log(req.body.name + 'logged in');
            // login in information....
-
          }else{
            console.log('incorrect password or username');
 
