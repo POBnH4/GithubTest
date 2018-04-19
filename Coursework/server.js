@@ -67,7 +67,7 @@ app.get('/logout', function(req,res){
 
        app.post('/registerDetails', function (req,res){
          db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurences) => {
-             if(occurences > USER_DOES_NOT_EXIST){
+             if(occurences == USER_DOES_NOT_EXIST){
                 var info = {
                   "email": req.body.email,
                   "name":req.body.name,
