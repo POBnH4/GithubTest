@@ -80,7 +80,7 @@ app.get('/logout', function(req,res){
                  })
 
                }else{
-                 console.log("1 lowercase,1 uppercase, 1 digit, between 8 and 20 characters");
+                 console.log("Password should contain: 1 lowercase,1 uppercase, 1 digit, between 8 and 20 characters");
                }
             }else{
               console.log("User already exists with that email!");
@@ -142,12 +142,12 @@ app.get('/forgottenPasswordDetails', function(req,res) {
      // get a person's name from the database and add it after Mr/Mrs.
   }
 
-  // db.collection('users').find("email":req.body.email).count() == USER_EXISTS){
-  //   transporter.sendMail(mailOptions, function(error, info){
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       console.log('Email sent: ' + info.response);
+  db.collection('users').find("email":req.body.email).count() == USER_EXISTS){
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
 
         // var user = {}
         // var newValues = {$set: {}};
