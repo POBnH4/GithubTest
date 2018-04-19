@@ -50,7 +50,9 @@ app.get('/userDetails', function(req,res) {
 //   alert("You password must contain at least one lowercase letter," +
 //    "one uppercase letter, one digit, and be between 8 and 20 characters;")
 // }
-app.get('/registerDetails', function(req,res) {
+
+function registerNewUser(){
+ app.get('/registerDetails', function(req,res) {
   if(db.collection('users').find(req.body).count() == 0){
 
       var info = {
@@ -72,7 +74,8 @@ app.get('/registerDetails', function(req,res) {
           alert("A user already exists with the email!");
      }
   });
-});
+ });
+}
 
 
 // - - - - - -  - -  -  SEND AN EMAIL WITH A NEW PASSWORD -   -   -   -   -   -   -
