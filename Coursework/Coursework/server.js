@@ -7,7 +7,6 @@ const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,2
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
 
-app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());       // to support JSON-encoded
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.urlencoded({extended: true}))
@@ -51,26 +50,21 @@ app.get('/userDetails', function(req,res) {
 // }
 app.get('/registerDetails', function(req,res) {
   if(db.collection('users').find(req.body).count() == 0){
-
       var info = {
          email: req.body.email,
          name:req.body.name,
          password: req.body.password
        };
-
-       app.post('/registerDetails', function (req,res){
-         db.collection('users').save(info, function(err, result) {
-           if (err) throw err;
-           console.log('Saved to database')
-           alert("You have officially registered!");
-           res.redirect('/')
-         })
-       }
-
-     }else{
-          alert("A user already exists with the email!");
-     }
-  });
+      db.collection('users').save(info, function(err, result) {
+        if (err) throw err;
+        console.log('Saved to database')
+        res.redirect('/')
+      })
+      alert("You have officially registered!");
+      app.post('/register', function (req, res) { })
+  }else{
+      alert("A user already exists with the email!");
+  }
 });
 
 

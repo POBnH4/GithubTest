@@ -1,0 +1,119 @@
+/* Set width and position of accordion */
+.content {
+  width: 60%;
+  margin: auto;
+  padding-top: 38px;
+}
+
+#accordion {
+  background-color: white;
+  font-size: 13px;
+  color: black;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+   /* Transitions for smoother opening/closing of panels  */
+  /* -webkit-transition: 0.5s ease-in-out; */
+}
+
+.bMount {
+    padding-left: 15px;
+/*    margin-right: 10px;*/
+}
+
+.munrotitle:after {
+    content: "\25bc";
+    color: #ffffff;
+    float: right;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 11px;
+}
+
+.munrotitle.ui-state-active:after {
+    content: "\25b2";
+}
+
+h4 {
+  color: white;
+  background-color: #3b8686;
+  padding: 10px 0 10px 10px;
+  margin: 5px 0 5px 0;
+  font-family: Verdana;
+}
+
+ .whiteback {
+  padding: 5px 0 5px 5px;
+  background-color: white;
+  display: block;
+  font-family: Verdana;
+  font-size: 12px;
+   /* max-height is the attribute that controls the show/hide of the panel */
+  /* max-height: 0; */
+  /* -webkit-transition: 0.15s ease-in-out; */
+  height: auto;
+/*     padding-bottom: 10px;*/
+/*     overflow: auto;*/
+  position: relative;
+  top: 80%;
+  left: 0;
+}
+
+/* Changes Accordion background colour on hover and when panel is open */
+h4:hover,
+h4:active {
+  background-color: #79bd9a;
+}
+
+/*
+img {
+  float: right;
+  padding-right: 10px;
+}
+*/
+
+.float_center {
+  float: right;
+  padding: 10px 0 10px 0;
+  position: relative;
+  right: 20%;
+}
+
+
+.mountains {
+    width: 42px;
+    height: 25px;
+    padding-bottom: 10px;
+/*
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+*/
+}
+
+/*
+#mapid {
+    height: 400px;
+}
+*/
+
+#myInput {
+    background-image: url('/../../logo.png');
+    background-position: -8px 0px;
+    background-size: 55px 40px;
+    background-repeat: no-repeat;
+/*    background-color: aquamarine;*/
+    width: 40%;
+    font-size: 14px;
+    font-family: Verdana;
+    padding: 12px 20px 10px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.inline {
+    padding-left: 55px;
+}

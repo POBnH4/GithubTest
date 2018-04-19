@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Munro Map</title>
+        <link rel="stylesheet" href="mapstyle.css">
+        <link rel="stylesheet" href="popupbox.css">
+
+        <link rel="shortcut icon" type="image/png" href="favicon.png" />
+
+        <!-- Leaflet Stylesheet & Script -->
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
+        <script src="leaflet/leaflet.js"></script>
+
+        <!-- Interactive Map -->
+<!--        <script src="js/map.js" type="text/javascript"></script>-->
+
+        <!-- mapbox -->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+
+        <!-- Code for Header -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/main_style.css">
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="parallax">
+                <div class="display">
+                    <img class="logo" src="../img/ms_logo_white_1.png" S>
+                </div>
+            </div>
+
+            <nav>
+                <div id="nav-menu">
+                    <a id="close-btn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
+                    <a id="nav-home" class="menu-btn" href="../index.html">Home</a>
+                    <a id="nav-map" class="menu-btn" href="munromap.html">Map</a>
+                    <a id="nav-list" class="menu-btn" href="../list/munro-list.html">List</a>
+                    <a id="nav-info" class="menu-btn" href="../information/TravelPage.html">Information</a>
+                    <a id="nav-contact" class="menu-btn" href="../contact/contact.html">Contact</a>
+                    <a id="nav-login" class="menu-btn" href="#">Login</a>
+                </div>
+                <span id="open-btn" onclick="openNav()">MENU</span>
+            </nav>
+        </header>
+
+        <main class="page">
+            <h1>Munro Map</h1>
+            <p>Interactive Munro Map, using Leaflet</p>
+            <p>Click on the map markers to reveal more information about the Munro.</p>
+            <!--        <button id="openBox">Open Box</button>-->
+            <div id="mapid"></div>
+            <!--        <script src="js/map.js" type="text/javascript"></script>-->
+
+            <!-- Map Pop-Up Code -->
+            <div id="popup">
+
+                <section id="box">
+                    <section id="boxHeader">
+                        <div>
+                            <p id="mName">Munro Name</p>
+                            <span id="close">&times;</span>
+                        </div>
+                    </section>
+                    <section id="boxContent">
+                        <img id="mImg" src="img/bennevis.jpg">
+                        <div id="mText">
+                            <table>
+                                <tr>
+                                    <td>Height</td>
+                                    <td>unknown</td>
+                                </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td>unknown</td>
+                                </tr>
+                                <tr>
+                                    <td>Latitude</td>
+                                    <td>unknown</td>
+                                </tr>
+                                <tr>
+                                    <td>Longitude</td>
+                                    <td>unknown</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                    <section id="weather">
+                        <img src="img/weather.jpg">
+                    </section>
+                    <section id="boxFooter">
+                        <div>
+                            <a id="mLink" href="#">View More Information</a>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <!-- End -->
+        </main>
+
+
+        <footer>
+            <div>
+                <p>MUNRO SPOTTER</p>
+                <p id="year">2018</p>
+            </div>
+        </footer>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<!--        <script src="js/map.js" type="text/javascript"></script>-->
+
+        <!--<script src="js/open.js" type="text/javascript"></script>-->
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="jsonmap.js" type="text/javascript"></script>
+        <script src="../js/sidenav.js"></script>
+        <!--<script src="../include.js"></script>-->
+
+    </body>
+
+</html>
