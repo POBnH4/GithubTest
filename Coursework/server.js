@@ -49,7 +49,7 @@ app.get('/userDetails', function(req,res) {
 //    "one uppercase letter, one digit, and be betw een 8 and 20 characters;")
 // }
 
-       app.get('/registerDetails', function (req,res){
+       app.post('/registerDetails', function (req,res){
 
          //if(db.collection('users').find(req.body).count() == 0){
          console.log('Here');
@@ -62,7 +62,7 @@ app.get('/userDetails', function(req,res) {
            db.collection('users').save(info, function(err, result) {
              if (err) throw err;
              console.log('Saved to database');
-             alert("You have officially registered!");
+             //alert("You have officially registered!");
              res.redirect('/')
            })
 
