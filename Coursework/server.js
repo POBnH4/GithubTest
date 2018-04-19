@@ -7,11 +7,9 @@ const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,2
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
 
-// app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
-app.use(bodyParser.json());       // to support JSON-encoded
 app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 
 var db;
