@@ -60,10 +60,10 @@ app.get('/userDetails', function(req,res) {
 
            db.collection('users').save(info, function(err, result) {
              if (err) throw err;
-             console.log('Saved to database')
+             console.log('Saved to database');
              alert("You have officially registered!");
              res.redirect('/')
-           });
+           })
 
         //}else{
         //    alert("A user already exists with the email!");
