@@ -129,12 +129,12 @@ app.get('/forgottenPasswordDetails', function(req,res) {
      // get a person's name from the database and add it after Mr/Mrs.
   };
 
-  if(db.collection('users').find(req.body.email).count() == USER_EXISTS){
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
+  // db.collection('users').find(req.body.email).count() == USER_EXISTS){
+  //   transporter.sendMail(mailOptions, function(error, info){
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       console.log('Email sent: ' + info.response);
 
         // var user = {}
         // var newValues = {$set: {}};
@@ -142,9 +142,5 @@ app.get('/forgottenPasswordDetails', function(req,res) {
         //   if(err) throw err;
         //   res.redirect('/');
         // });
-
-      }
-    });
-  }
 
 });
