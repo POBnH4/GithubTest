@@ -127,7 +127,7 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'yahoo',
     auth: {
       user: 'munrospotter@yahoo.com',
       pass: 'JustinBieberFan1'
