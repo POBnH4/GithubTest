@@ -6,9 +6,14 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const app = express();
 const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
+
+const USERNAME_VALIDITY = new RegExp("[a-zA-Z]");
+const EMAIL_VALIDITY = new RegExp("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
+
+
 app.use(session({ secret: 'example'}));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -127,10 +132,10 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   var transporter = nodemailer.createTransport({
-    service: 'yahoo',
+    service: '',
     auth: {
-      user: 'munrospotter@yahoo.com',
-      pass: 'JustinBieberFan1'
+      user: '',
+      pass: ''
     }
   });
 
