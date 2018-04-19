@@ -142,7 +142,7 @@ app.get('/forgottenPasswordDetails', function(req,res) {
      // get a person's name from the database and add it after Mr/Mrs.
   }
 
-  db.collection('users').find({"email":req.body.email}).count() == USER_EXISTS){
+  db.collection('users').count({"email":req.body.email}) == USER_EXISTS){
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
