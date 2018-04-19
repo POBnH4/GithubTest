@@ -46,12 +46,13 @@ app.get('/userDetails', function(req,res) {
 //   register...
 // }else{
 //   alert("You password must contain at least one lowercase letter," +
-//    "one uppercase letter, one digit, and be between 8 and 20 characters;")
+//    "one uppercase letter, one digit, and be betw een 8 and 20 characters;")
 // }
 
        app.post('/registerDetails', function (req,res){
-         //if(db.collection('users').find(req.body).count() == 0){
 
+         //if(db.collection('users').find(req.body).count() == 0){
+         console.log('Here');
           var info = {
                 "email": req.body.email,
                 "name":req.body.name,
