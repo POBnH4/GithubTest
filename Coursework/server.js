@@ -49,7 +49,6 @@ app.get('/userDetails', function(req,res) {
 //    "one uppercase letter, one digit, and be between 8 and 20 characters;")
 // }
 
-function registerNewUser(){
        app.post('/registerDetails', function (req,res){
          if(db.collection('users').find(req.body).count() == 0){
 
@@ -59,7 +58,7 @@ function registerNewUser(){
                 password: req.body.password
             };
 
-           db.collection('users').save(info, function(err, result) {
+           db.collection('users').save(req.body, function(err, result) {
              if (err) throw err;
              console.log('Saved to database')
              alert("You have officially registered!");
@@ -68,7 +67,7 @@ function registerNewUser(){
 
         }else{
             alert("A user already exists with the email!");
-        } 
+        }
        });
 }
 
