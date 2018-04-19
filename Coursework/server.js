@@ -30,11 +30,15 @@ app.get('/', function(req,res) {
 // ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
 app.post('/userDetails', function(req,res) {
-    db.collection('users').count({"email": req.body.email})
-      .then((occurences) => {
+  // db.collection("users").findOne({"email": req.body.email, "password" : req.body.password}, function(err, result) {
+  //   if (err) throw err;
+  //   console.log(result.name lo);
+  //   db.close();
+  // });
+    db.collection('users').count({"email": req.body.email, "password" : req.body.password}).then((occurences) => {
          if(occurences >= USER_EXISTS){
              req.session.loggedin = true;
-             console.log(req.body.name + ' logged in');
+             console.log(req.body.email + ' logged in');
              // login in information....
          }else{
            console.log('You username or password is incorrect');
