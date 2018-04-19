@@ -62,13 +62,13 @@ app.get('/logout', function(req,res){
 // if(passwordValidity.test(req.body.password)){
 //   register...
 // }else{
-//   alert("You password must contain at least one lowercase letter," +
-//    "one uppercase letter, one digit, and be betw een 8 and 20 characters;")
+
 // }
 
        app.post('/registerDetails', function (req,res){
-
-         db.collection('users').count({"email":req.body.email})
+         var username = document.getElementById("registerEmail").value;
+         var password = document.getElementById("registerPassword").value;
+         db.collection('users').count({"email":username, "password": password})
            .then((occurences) => {
              if(occurences > USER_DOES_NOT_EXIST){
                 var info = {
@@ -83,7 +83,7 @@ app.get('/logout', function(req,res){
                   res.redirect('/');
                 })
               }else{
-                console.log("A user already exists with the email!");
+                console.log("User already exists with that email!");
                 res.redirect('/');
               }
           });
