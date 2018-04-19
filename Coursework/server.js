@@ -29,11 +29,9 @@ app.get('/', function(req,res) {
 
 app.get('/userDetails', function(req,res) {
     if(db.collection('users').find(req.body).count() == 0){
-        alert("Incorrect username or password!" +
-             "If you don't have an account please" +
-             " click the button register below.");
-        //shouldnt be an alert!
+      console.log('incorrect password or username');
     }else{
+      console.log(req.body.name + 'logged in');
       // login in information....
     }
 });
@@ -51,8 +49,7 @@ app.get('/userDetails', function(req,res) {
 
        app.post('/registerDetails', function (req,res){
 
-         //if(db.collection('users').find(req.body).count() == 0){
-         console.log('Here');
+         if(db.collection('users').find(req.body).count() == 0){
           var info = {
                 "email": req.body.email,
                 "name":req.body.name,
@@ -62,13 +59,13 @@ app.get('/userDetails', function(req,res) {
            db.collection('users').save(info, function(err, result) {
              if (err) throw err;
              console.log('Saved to database');
-             //alert("You have officially registered!");
-             res.redirect('/')
+             res.redirect('/');
            })
 
-        //}else{
-        //    alert("A user already exists with the email!");
-        //}
+        }else{
+            console.log("A user already exists with the email!");
+            res.redirect('/');
+        }
        });
 
 
@@ -110,6 +107,7 @@ function getRandomPassword(){
 app.get('/forgottenPasswordDetails', function(req,res) {
   var nodemailer = require('nodemailer');
   var newPassword = getRandomPassword();
+  console.log(newPassword + " the new password for the user");
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -142,9 +140,6 @@ app.get('/forgottenPasswordDetails', function(req,res) {
 
       }
     });
-  }else{
-      alert("A user already exists with the email!");
-      //SHOULDNT BE AN ALERT!
   }
 
 });

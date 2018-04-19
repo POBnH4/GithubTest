@@ -103,26 +103,24 @@
                <!-- - - - - - - - - - - - - POP UP -> LOGIN - - - - - - - - - - - - - - - - - - -->
 
               <div id="login" class="modal">
-                <form class="modal-content animate">
+                <form class="modal-content animate" action="/userDetails" method="POST">
                   <div class="imgcontainer">
                     <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
                   </div>
 
                   <div class="container">
-                    <form action="/userDetails" method="POST">
 
                       <input type="text" placeholder="Enter your email" name="uname" required>
                       <input type="password" placeholder="Enter Password" name="psw" required>
                       <button type="submit">Login</button>
 
-                    </form>
                     <label>
                       <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                     <span id = "register-link" >or <a href="#" onclick="document.getElementById('register').style.display='block'">Register</a></span>
                     <div id = "popUp-bottom">
                       <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn">Cancel</button>
-                      <span class="psw">Forgot <a href="#"  onclick="document.getElementById('forgottenPassword').style.display='block'">password?</a></span>
+                      <span class="psw">Forgot <a href="#" onclick="document.getElementById('forgottenPassword').style.display='block'">password?</a></span>
                     </div>
                   </div>
                 </form>
@@ -136,15 +134,11 @@
                      <div class="imgcontainer">
                        <span onclick="document.getElementById('register').style.display='none'" class="close" title="Close Modal">&times;</span>
                      </div>
-
                      <div class="container">
-
-
                          <input type="text" placeholder="Enter E-mail" name="email" required>
                          <input type="text" placeholder="Enter your real name" name="name" required>
                          <input type="password" placeholder="Enter Password" name="password" required>
                          <button type="submit">Submit</button>
- 
                      </div>
                    </form>
                    </div>
@@ -154,24 +148,21 @@
 
 
                   <div id="forgottenPassword" class="modal">
-                    <form class="modal-content animate" >
+                    <form class="modal-content animate" action="/forgottenPasswordDetails" method="POST" >
                       <div class="imgcontainer">
                         <span onclick="document.getElementById('forgottenPassword').style.display='none'" class="close" title="Close Modal">&times;</span>
                       </div>
 
                       <div class="container">
-                        <form action="/forgottenPasswordDetails" method="POST">
 
                           <input type="text" placeholder="Enter your E-mail" name="email" required>
                           <button id = "reset-button" type="submit" onclick = "SEND EMAIL....">Reset password</button>
-
-                        </form>
 
                         <div id = "popUp-bottom">
                           <button class="cancelbtn" id = "reset-cancel-button" type="button" onclick="document.getElementById('forgottenPassword').style.display='none'" >Cancel</button>
                         </div>
                       </div>
                     </form>
-                    </div>
+                 </div>
     </body>
 </html>
