@@ -33,13 +33,13 @@ app.post('/userDetails', function(req,res) {
 
     db.collection('users').count({"email": req.body.email})
       .then((occurences) => {
-         if(occurences == USER_EXISTS){
-           console.log(req.body.name + 'logged in');
-           // login in information....
-         }else{
-           console.log('incorrect password or username');
+         // if(occurences == USER_EXISTS){
+         //   console.log(req.body.name + 'logged in');
+         //   // login in information....
+         // }else{
+           console.log('IN THE GAME');
 
-         }
+        // }
       });
 });
 
