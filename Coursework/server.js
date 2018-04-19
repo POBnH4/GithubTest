@@ -3,6 +3,7 @@ const url = "mongodb://localhost:27017/users";
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 const app = express();
 const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
@@ -59,30 +60,32 @@ app.get('/logout', function(req,res){
 //- - - -- - - -- - - - REGISTER  - - - - - - - - - - - - - -  --
 
 
-// if(passwordValidity.test(req.body.password)){
-//   register...
-// }else{
 
-// }
 
        app.post('/registerDetails', function (req,res){
          db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurences) => {
              if(occurences == USER_DOES_NOT_EXIST){
-                var info = {
-                  "email": req.body.email,
-                  "name":req.body.name,
-                  "password": req.body.password
-                };
 
-                db.collection('users').save(info, function(err, result) {
-                  if (err) throw err;
-                  console.log('Saved to database');
-                  res.redirect('/');
-                })
-              }else{
-                console.log("User already exists with that email!");
-                res.redirect('/');
-              }
+               if(passwordValidity.test(req.body.password)){
+
+                 var info = {
+                   "email": req.body.email,
+                   "name":req.body.name,
+                   "password": req.body.password
+                 };
+                 db.collection('users').save(info, function(err, result) {
+                   if (err) throw err;
+                   console.log('Saved to database');
+                   res.redirect('/');
+                 })
+
+               }else{
+                 console.log("1 lowercase,1 uppercase, 1 digit, between 8 and 20 characters");
+               }
+            }else{
+              console.log("User already exists with that email!");
+              res.redirect('/');
+            }
           });
         });
 
@@ -121,7 +124,6 @@ function getRandomPassword(){
 }
 
 app.get('/forgottenPasswordDetails', function(req,res) {
-  var nodemailer = require('nodemailer');
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   var transporter = nodemailer.createTransport({
