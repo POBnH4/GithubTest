@@ -52,11 +52,11 @@ app.get('/userDetails', function(req,res) {
        app.post('/registerDetails', function (req,res){
          //if(db.collection('users').find(req.body).count() == 0){
 
-           var info = {
-                email: req.body.email,
-                name:req.body.name,
-                password: req.body.password
-            };
+//           var info = {
+            //     email: req.body.email,
+            //     name:req.body.name,
+            //     password: req.body.password
+            // };
 
            db.collection('users').save(req.body, function(err, result) {
              if (err) throw err;
