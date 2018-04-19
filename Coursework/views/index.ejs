@@ -110,8 +110,8 @@
 
                   <div class="container">
 
-                      <input type="text" placeholder="Enter your email" name="uname" required>
-                      <input type="password" placeholder="Enter Password" name="psw" required>
+                      <input type="text" placeholder="Enter your email" name="name" required>
+                      <input type="password" placeholder="Enter Password" name="password" required>
                       <button type="submit">Login</button>
 
                     <label>
@@ -148,7 +148,7 @@
 
 
                   <div id="forgottenPassword" class="modal">
-                    <form class="modal-content animate" action="/forgottenPasswordDetails" method="POST" >
+                    <form class="modal-content animate" action="/forgottenPasswordDetails" method="GET" >
                       <div class="imgcontainer">
                         <span onclick="document.getElementById('forgottenPassword').style.display='none'" class="close" title="Close Modal">&times;</span>
                       </div>
@@ -156,7 +156,7 @@
                       <div class="container">
 
                           <input type="text" placeholder="Enter your E-mail" name="email" required>
-                          <button id = "reset-button" type="submit" onclick = "SEND EMAIL....">Reset password</button>
+                          <button id = "reset-button" type="submit">Reset password</button>
 
                         <div id = "popUp-bottom">
                           <button class="cancelbtn" id = "reset-cancel-button" type="button" onclick="document.getElementById('forgottenPassword').style.display='none'" >Cancel</button>

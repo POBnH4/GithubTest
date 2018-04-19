@@ -28,7 +28,7 @@ app.get('/', function(req,res) {
 // ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
 app.get('/userDetails', function(req,res) {
-    if(db.collection('users').find(req.body).count() == 0){
+    if(db.collection('users').findOne(req.body).count() == 0){
       console.log('incorrect password or username');
     }else{
       console.log(req.body.name + 'logged in');
@@ -49,7 +49,7 @@ app.get('/userDetails', function(req,res) {
 
        app.post('/registerDetails', function (req,res){
 
-         if(db.collection('users').find(req.body.email).count() == 0){
+         if(db.collection('users').findOne(req.body.email).count() == 0){
           var info = {
                 "email": req.body.email,
                 "name":req.body.name,
