@@ -74,72 +74,73 @@ app.post('/userDetails', function(req,res) {
                 res.redirect('/');
               }
           });
+        });
 
 // - - - - - -  - -  -  SEND AN EMAIL WITH A NEW PASSWORD -   -   -   -   -   -   -
 
 
-// function getRandomPassword(){
-//
-//   const LENGTH_OF_PASSWORD = 14;
-//   const CHANCE_OF_A_NUMBER = 20;
-//   const MAKE_THE_NUMBER_IN_HALF = 2;
-//   const MAKE_CHANCE_SMALLER = 4;
-//
-//   var alphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
-//   var numbers = "0123456789";
-//   var newPassword;
-//
-//   //if the gate number is more than half of the password's length
-//   //add a random number(character) to the newPassword string;
-//   //else add a random lowercase/Uppercase letter to the newPassword string;
-//   while(true){
-//    newPassword = "";
-//    for(var i = 0; i < LENGTH_OF_PASSWORD; i++){
-//      var gate = Math.floor(Math.random() * CHANCE_OF_A_NUMBER);
-//      if(gate >= (CHANCE_OF_A_NUMBER / MAKE_THE_NUMBER_IN_HALF) + MAKE_CHANCE_SMALLER){
-//        var randomNumber = Math.floor(Math.random() * numbers.length);
-//        newPassword += numbers.charAt(randomNumber);
-//      }else{
-//        var randomLetter = Math.floor(Math.random() * alphabet.length);
-//        newPassword += alphabet.charAt(randomLetter);
-//      }
-//    }
-//    if(PASSWORD_VALIDITY.test(newPassword)){ break;}
-//   }
-//   return newPassword;
-// }
-//
-// app.get('/forgottenPasswordDetails', function(req,res) {
-//   var nodemailer = require('nodemailer');
-//   var newPassword = getRandomPassword();
-//   console.log(newPassword + " the new password for the user");
-//   var transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: 'munrospotter@yahoo.com',
-//       pass: 'JustinBieberFan1'
-//     }
-//   });
-//
-//   var mailOptions = {
-//     from: 'munrospotter@yahoo.com',
-//     to: req.body.email,
-//     subject: 'MunroSpotter new password',
-//     text: 'Greetings, Mr/Mrs.+ ' + 'Your new password is: ' + newPassword
-//      // get a person's name from the database and add it after Mr/Mrs.
-//   }
-//
-//   // db.collection('users').find("email":req.body.email).count() == USER_EXISTS){
-//   //   transporter.sendMail(mailOptions, function(error, info){
-//   //     if (error) {
-//   //       console.log(error);
-//   //     } else {
-//   //       console.log('Email sent: ' + info.response);
-//
-//         // var user = {}
-//         // var newValues = {$set: {}};
-//         // db.collection('users').updateOne(user,newValues, function(err,result){
-//         //   if(err) throw err;
-//         //   res.redirect('/');
-//         // });
-// });
+function getRandomPassword(){
+
+  const LENGTH_OF_PASSWORD = 14;
+  const CHANCE_OF_A_NUMBER = 20;
+  const MAKE_THE_NUMBER_IN_HALF = 2;
+  const MAKE_CHANCE_SMALLER = 4;
+
+  var alphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+  var numbers = "0123456789";
+  var newPassword;
+
+  //if the gate number is more than half of the password's length
+  //add a random number(character) to the newPassword string;
+  //else add a random lowercase/Uppercase letter to the newPassword string;
+  while(true){
+   newPassword = "";
+   for(var i = 0; i < LENGTH_OF_PASSWORD; i++){
+     var gate = Math.floor(Math.random() * CHANCE_OF_A_NUMBER);
+     if(gate >= (CHANCE_OF_A_NUMBER / MAKE_THE_NUMBER_IN_HALF) + MAKE_CHANCE_SMALLER){
+       var randomNumber = Math.floor(Math.random() * numbers.length);
+       newPassword += numbers.charAt(randomNumber);
+     }else{
+       var randomLetter = Math.floor(Math.random() * alphabet.length);
+       newPassword += alphabet.charAt(randomLetter);
+     }
+   }
+   if(PASSWORD_VALIDITY.test(newPassword)){ break;}
+  }
+  return newPassword;
+}
+
+app.get('/forgottenPasswordDetails', function(req,res) {
+  var nodemailer = require('nodemailer');
+  var newPassword = getRandomPassword();
+  console.log(newPassword + " the new password for the user");
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'munrospotter@yahoo.com',
+      pass: 'JustinBieberFan1'
+    }
+  });
+
+  var mailOptions = {
+    from: 'munrospotter@yahoo.com',
+    to: req.body.email,
+    subject: 'MunroSpotter new password',
+    text: 'Greetings, Mr/Mrs.+ ' + 'Your new password is: ' + newPassword
+     // get a person's name from the database and add it after Mr/Mrs.
+  }
+
+  // db.collection('users').find("email":req.body.email).count() == USER_EXISTS){
+  //   transporter.sendMail(mailOptions, function(error, info){
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       console.log('Email sent: ' + info.response);
+
+        // var user = {}
+        // var newValues = {$set: {}};
+        // db.collection('users').updateOne(user,newValues, function(err,result){
+        //   if(err) throw err;
+        //   res.redirect('/');
+        // });
+});
