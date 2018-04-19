@@ -55,7 +55,7 @@ app.post('/userDetails', function(req,res) {
 
        app.post('/registerDetails', function (req,res){
 
-         db.collection('users').count({req.body.email})
+         db.collection('users').count({"email":req.body.email})
            .then((occurences) => {
              if(occurences > USER_DOES_NOT_EXIST){
                 var info = {
@@ -129,7 +129,7 @@ app.get('/forgottenPasswordDetails', function(req,res) {
      // get a person's name from the database and add it after Mr/Mrs.
   };
 
-  // db.collection('users').find(req.body.email).count() == USER_EXISTS){
+  // db.collection('users').find("email":req.body.email).count() == USER_EXISTS){
   //   transporter.sendMail(mailOptions, function(error, info){
   //     if (error) {
   //       console.log(error);
