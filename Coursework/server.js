@@ -69,7 +69,7 @@ app.get('/userDetails', function(req,res) {
             alert("A user already exists with the email!");
         }
        });
-}
+
 
 
 // - - - - - -  - -  -  SEND AN EMAIL WITH A NEW PASSWORD -   -   -   -   -   -   -
