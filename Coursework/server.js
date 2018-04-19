@@ -66,10 +66,7 @@ app.get('/logout', function(req,res){
 // }
 
        app.post('/registerDetails', function (req,res){
-         var username = document.getElementById("registerEmail").value;
-         var password = document.getElementById("registerPassword").value;
-         db.collection('users').count({"email":username, "password": password})
-           .then((occurences) => {
+         db.collection('users').count({"email":username, "password": password}).then((occurences) => {
              if(occurences > USER_DOES_NOT_EXIST){
                 var info = {
                   "email": req.body.email,
