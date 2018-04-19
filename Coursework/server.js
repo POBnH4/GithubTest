@@ -50,7 +50,7 @@ app.get('/userDetails', function(req,res) {
 // }
 
        app.post('/registerDetails', function (req,res){
-         if(db.collection('users').find(req.body).count() == 0){
+         //if(db.collection('users').find(req.body).count() == 0){
 
            var info = {
                 email: req.body.email,
@@ -65,9 +65,9 @@ app.get('/userDetails', function(req,res) {
              res.redirect('/')
            });
 
-        }else{
-            alert("A user already exists with the email!");
-        }
+        //}else{
+        //    alert("A user already exists with the email!");
+        //}
        });
 
 
