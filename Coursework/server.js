@@ -66,7 +66,7 @@ app.get('/logout', function(req,res){
          db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurences) => {
              if(occurences == USER_DOES_NOT_EXIST){
 
-               if(passwordValidity.test(req.body.password)){
+               if(PASSWORD_VALIDITY.test(req.body.password)){
 
                  var info = {
                    "email": req.body.email,
