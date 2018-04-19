@@ -69,7 +69,7 @@ function registerNewUser(){
         }else{
             alert("A user already exists with the email!");
         }
-       });
+       }); 
 }
 
 
