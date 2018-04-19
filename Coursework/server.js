@@ -26,15 +26,20 @@ app.get('/', function(req,res) {
   res.render('index')
 });
 
+
 // ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
-app.get('/userDetails', function(req,res) {
-    if(db.collection('users').find(req.body).count() == USER_DOES_NOT_EXIST){
-      console.log('incorrect password or username');
-    }else{
-      console.log(req.body.name + 'logged in');
-      // login in information....
-    }
+app.post('/userDetails', function(req,res) {
+
+    if(db.collection('users').count({req.body.email})
+      .then((occurences) => {
+         if(occurences > USER_DOES_NOT_EXIST){
+           console.log('incorrect password or username');
+         }else{
+           console.log(req.body.name + 'logged in');
+           // login in information....
+         }
+      });
 });
 
 
@@ -50,26 +55,25 @@ app.get('/userDetails', function(req,res) {
 
        app.post('/registerDetails', function (req,res){
 
-         if(db.collection('users').find(req.body).count() == USER_DOES_NOT_EXIST ){
-          var info = {
-                "email": req.body.email,
-                "name":req.body.name,
-                "password": req.body.password
-            };
+         db.collection('users').count({req.body.email})
+           .then((occurences) => {
+             if(occurences > USER_DOES_NOT_EXIST){
+                var info = {
+                  "email": req.body.email,
+                  "name":req.body.name,
+                  "password": req.body.password
+                };
 
-           db.collection('users').save(info, function(err, result) {
-             if (err) throw err;
-             console.log('Saved to database');
-             res.redirect('/');
-           })
-
-        }else{
-            console.log("A user already exists with the email!");
-            res.redirect('/');
-        }
-       });
-
-
+                db.collection('users').save(info, function(err, result) {
+                  if (err) throw err;
+                  console.log('Saved to database');
+                  res.redirect('/');
+                })
+              }else{
+                console.log("A user already exists with the email!");
+                res.redirect('/');
+              }
+          });
 
 // - - - - - -  - -  -  SEND AN EMAIL WITH A NEW PASSWORD -   -   -   -   -   -   -
 
@@ -112,15 +116,15 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'myEmail@gmail.com',
-      pass: 'myPassword'
+      user: 'munrospotter@yahoo.com',
+      pass: 'JustinBieberFan1'
     }
   });
 
   var mailOptions = {
-    from: 'myEmail@gmail.com',
+    from: 'munrospotter@yahoo.com',
     to: req.body.email,
-    subject: 'MunroSpotter reset password',
+    subject: 'MunroSpotter new password',
     text: 'Greetings, Mr/Mrs.+ ' + 'Your new password is: ' + newPassword
      // get a person's name from the database and add it after Mr/Mrs.
   };
