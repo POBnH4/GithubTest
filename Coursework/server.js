@@ -17,7 +17,7 @@ var db;
 MongoClient.connect(url, function(err, database) {
   if (err) throw err;
   db = database;
-  app.listen(8080); 
+  app.listen(8080);
   console.log('listening....');
 });
 
@@ -50,27 +50,28 @@ app.get('/userDetails', function(req,res) {
 // }
 
 function registerNewUser(){
- app.get('/registerDetails', function(req,res) {
-  if(db.collection('users').find(req.body).count() == 0){
-
-      var info = {
-         email: req.body.email,
-         name:req.body.name,
-         password: req.body.password
-       };
-
        app.post('/registerDetails', function (req,res){
-         db.collection('users').save(info, function(err, result) {
-           if (err) throw err;
-           console.log('Saved to database')
-           alert("You have officially registered!");
-           res.redirect('/')
-         });
+         if(db.collection('users').find(req.body).count() == 0){
+
+           var info = {
+                email: req.body.email,
+                name:req.body.name,
+                password: req.body.password
+            };
+
+           db.collection('users').save(info, function(err, result) {
+             if (err) throw err;
+             console.log('Saved to database')
+             alert("You have officially registered!");
+             res.redirect('/')
+           });
+
+        }else{
+            alert("A user already exists with the email!");
+        }
        });
 
-     }else{
-          alert("A user already exists with the email!");
-     }
+
   });
 }
 
