@@ -30,7 +30,7 @@ app.get('/', function(req,res) {
 // ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
 app.post('/userDetails', function(req,res) {
-    db.collection('users').count({"email": req.body.email, "password": req.body.password})
+    db.collection('users').count({"email": req.body.email})
       .then((occurences) => {
          if(occurences >= USER_EXISTS){
              req.session.loggedin = true;
