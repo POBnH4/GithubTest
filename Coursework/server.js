@@ -3,6 +3,7 @@ const url = "mongodb://localhost:27017/users";
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
+const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
@@ -28,7 +29,7 @@ app.get('/', function(req,res) {
 // ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
 app.get('/userDetails', function(req,res) {
-    if(db.collection('users').findOne(req.body).count() == 0){
+    if(db.collection('users').find(req.body).count() == USER_DOES_NOT_EXIST){
       console.log('incorrect password or username');
     }else{
       console.log(req.body.name + 'logged in');
@@ -49,7 +50,7 @@ app.get('/userDetails', function(req,res) {
 
        app.post('/registerDetails', function (req,res){
 
-         if(db.collection('users').findOne(req.body.email).count() == 0){
+         if(db.collection('users').find(req.body.email).count() == USER_DOES_NOT_EXIST ){
           var info = {
                 "email": req.body.email,
                 "name":req.body.name,
@@ -124,7 +125,7 @@ app.get('/forgottenPasswordDetails', function(req,res) {
      // get a person's name from the database and add it after Mr/Mrs.
   };
 
-  if(db.collection('users').find(req.body.email).count() == 1){
+  if(db.collection('users').find(req.body.email).count() == USER_EXISTS){
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
