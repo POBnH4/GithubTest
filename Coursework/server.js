@@ -31,7 +31,7 @@ app.get('/', function(req,res) {
 
 app.post('/userDetails', function(req,res) {
 
-    db.collection('users').count({req.body.email})
+    db.collection('users').count({"email": req.body.email})
       .then((occurences) => {
          if(occurences > USER_DOES_NOT_EXIST){
            console.log('incorrect password or username');
