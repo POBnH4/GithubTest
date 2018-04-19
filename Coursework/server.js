@@ -1,15 +1,15 @@
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/users";
 const express = require('express');
-const bodyParser = require('body-parser')
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const app = express();
 const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
-
+app.use(session({ secret: 'example'}));
 app.use(express.static(__dirname + "/public"));
-
 app.use(bodyParser.urlencoded({ extended: true}));
 app.set('view engine', 'ejs');
 
@@ -30,17 +30,25 @@ app.get('/', function(req,res) {
 // ----- - - - - - - - - - LOGIN --- - - - - - - -- - - - --  - --
 
 app.post('/userDetails', function(req,res) {
-
-    db.collection('users').count({"email": req.body.email})
+    db.collection('users').count({"email": req.body.email, "password": req.body.password})
       .then((occurences) => {
          if(occurences >= USER_EXISTS){
-           console.log(req.body.name + 'logged in');
-           // login in information....
+             req.session.loggedin = true;
+             console.log(req.body.name + ' logged in');
+             // login in information....
          }else{
-           console.log('IN THE GAME');
-
+           console.log('You username or password is incorrect');
          }
-      });
+    });
+});
+
+
+//- - - - - -  -- - - -  - -LOGOUT - - -- - - - -- - - - - - -
+
+app.get('/logout', function(req,res){
+  req.session.loggedin = false;
+  req.session.destroy();
+  res.redirect('/')
 });
 
 
