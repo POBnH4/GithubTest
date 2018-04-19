@@ -143,4 +143,4 @@ app.get('/forgottenPasswordDetails', function(req,res) {
         //   res.redirect('/');
         // });
 
-});
+})
