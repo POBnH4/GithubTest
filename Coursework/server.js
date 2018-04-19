@@ -50,7 +50,7 @@ app.get('/userDetails', function(req,res) {
 
        app.post('/registerDetails', function (req,res){
 
-         if(db.collection('users').find(req.body.email).count() == USER_DOES_NOT_EXIST ){
+         if(db.collection('users').find(req.body).count() == USER_DOES_NOT_EXIST ){
           var info = {
                 "email": req.body.email,
                 "name":req.body.name,
