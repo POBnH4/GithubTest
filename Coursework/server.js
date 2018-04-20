@@ -70,8 +70,8 @@ app.get('/logout', function(req,res){
        app.post('/registerDetails', function (req,res){
          db.collection('users').count({"username":req.body.username, "password": req.body.password}).then((occurrences) => {
              if(occurrences == USER_DOES_NOT_EXIST){
-               var correctUsername = false,correctPassword = false;
 
+               var correctUsername = false,correctPassword = false;
                if(USERNAME_VALIDITY.test(req.body.username)){
                  correctUsername = true;
                }else{
