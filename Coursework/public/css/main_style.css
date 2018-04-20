@@ -82,6 +82,10 @@ nav {
   margin-top: 50px;
 }
 
+#register-link{
+  padding-left: -20px;
+}
+
 .row h3{
   padding-top: 10px;
 }
