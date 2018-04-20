@@ -141,6 +141,7 @@ function getName(email){
 }
 
 app.get('/forgottenPasswordDetails', function(req,res) {
+  nodemailer.createTestAccount((err, account) => {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   let transporter = nodemailer.createTransport({
@@ -180,4 +181,5 @@ app.get('/forgottenPasswordDetails', function(req,res) {
         //   if(err) throw err;
         //   res.redirect('/');
         // });
+ });
 });
