@@ -143,19 +143,19 @@ function getName(email){
 app.get('/forgottenPasswordDetails', function(req,res) {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
-  var transporter = nodemailer.createTransport({
+  let transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
     secure: false,
     auth: {
-      user: account.user, //  munroSpotter@gmail.com account username;
-      pass: account.pass  // account password;
+      user: account.user, // munroSpotter@gmail.com - account username;
+      pass: account.pass  // Munrospotter1 - account password;
     }
   });
 
-  var name = getName(req.body.email);
+  var name = getName(req.body.email); // not finished
 
-  var mailOptions = {
+  let mailOptions = {
     from: 'munroSpotter@gmail.com',
     to: req.body.email,
     subject: 'MunroSpotter new password',
