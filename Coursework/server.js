@@ -41,10 +41,10 @@ app.post('/userDetails', function(req,res) {
   //   console.log(result.name lo);
   //   db.close();
   // });
-    db.collection('users').count({"name": req.body.name, "password" : req.body.password}).then((occurrences) => {
+    db.collection('users').count({"name": req.body.username, "password" : req.body.password}).then((occurrences) => {
          if(occurrences >= USER_EXISTS){
              req.session.loggedin = true;
-             console.log(req.body.name + ' logged in');
+             console.log(req.body.username + ' logged in');
              // login in information....
          }else{
            console.log('You username or password is incorrect');
