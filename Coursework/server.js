@@ -145,13 +145,16 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false,
+    //smtp = simple mail transfer protocol, it's from the nodemailer library;
+    host: account.smtp.host,
+    port: account.smtp.port,
+    secure: account.smtp.secure,
     auth: {
       user: account.user, // munroSpotter@gmail.com - account username;
       pass: account.pass  // Munrospotter1 - account password;
-    }
+    },
+    logger: false,
+    debug: false //smtp includes traffic in the logs
   });
 
   var name = getName(req.body.email); // not finished
@@ -167,7 +170,7 @@ app.get('/forgottenPasswordDetails', function(req,res) {
       if(occurrences >= USER_EXISTS){
         transporter.sendMail(mailOptions, function(error, info){
           if (error) { console.log(error);}
-          console.log('Message sent: %s', info.messageId);
+          console.log('Message sent' );
           console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
         });
