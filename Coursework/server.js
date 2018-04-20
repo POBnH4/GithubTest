@@ -7,11 +7,11 @@ const nodemailer = require('nodemailer');
 const app = express();
 const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
 
-const USERNAME_VALIDITY = new RegExp("[a-zA-Z](?=.{6,18})");
-//const EMAIL_VALIDITY = new RegExp("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+const USERNAME_VALIDITY = new RegExp("[a-zA-Z0-9]{6,18})"); // username = email;
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
+
 
 
 app.use(session({ secret: 'example'}));
@@ -70,9 +70,21 @@ app.get('/logout', function(req,res){
        app.post('/registerDetails', function (req,res){
          db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurrences) => {
              if(occurrences == USER_DOES_NOT_EXIST){
+               var correctUsername = false,correctPassword = false;
 
-               if(PASSWORD_VALIDITY.test(req.body.password)){
+               if(USERNAME_VALIDITY.test(req.body.email)){
+                 correctUsername = true;
+               }else{
+                 console.log('Username should be: between 6 and 18 characters(only letters and numbers, no special characters)');
+               }
 
+               if(PASSWORD_VALIDITY.test(req.body.password) && correctUsername){
+                correctPassword = true;
+               }else{
+                 console.log("Password should contain: 1 lowercase,1 uppercase, 1 digit, between 8 and 20 characters");
+               }
+
+               if(correctUsername && correctPassword){
                  var info = {
                    "email": req.body.email,
                    "name":req.body.name,
@@ -83,10 +95,8 @@ app.get('/logout', function(req,res){
                    console.log('Saved to database');
                    res.redirect('/');
                  })
-
-               }else{
-                 console.log("Password should contain: 1 lowercase,1 uppercase, 1 digit, between 8 and 20 characters");
                }
+
             }else{
               console.log("User already exists with that email!");
               res.redirect('/');
@@ -158,7 +168,6 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   });
 
   var name = getName(req.body.email); // not finished
-  var userEmail = window.document.getElementById("forgottenPasswordEmail").value;
   let mailOptions = {
     from: 'munroSpotter@gmail.com',
     to: userEmail,
