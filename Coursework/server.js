@@ -41,10 +41,10 @@ app.post('/userDetails', function(req,res) {
   //   console.log(result.name lo);
   //   db.close();
   // });
-    db.collection('users').count({"email": req.body.email, "password" : req.body.password}).then((occurrences) => {
+    db.collection('users').count({"name": req.body.name, "password" : req.body.password}).then((occurrences) => {
          if(occurrences >= USER_EXISTS){
              req.session.loggedin = true;
-             console.log(req.body.email + ' logged in');
+             console.log(req.body.name + ' logged in');
              // login in information....
          }else{
            console.log('You username or password is incorrect');
@@ -68,11 +68,11 @@ app.get('/logout', function(req,res){
 
 
        app.post('/registerDetails', function (req,res){
-         db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurrences) => {
+         db.collection('users').count({"username":req.body.username, "password": req.body.password}).then((occurrences) => {
              if(occurrences == USER_DOES_NOT_EXIST){
                var correctUsername = false,correctPassword = false;
 
-               if(USERNAME_VALIDITY.test(req.body.email)){
+               if(USERNAME_VALIDITY.test(req.body.username)){
                  correctUsername = true;
                }else{
                  console.log('Username should be: between 6 and 18 characters(only letters and numbers, no special characters)');
@@ -86,13 +86,14 @@ app.get('/logout', function(req,res){
 
                if(correctUsername && correctPassword){
                  var info = {
+                   "username": req.body.username,
                    "email": req.body.email,
                    "name":req.body.name,
                    "password": req.body.password
                  };
                  db.collection('users').save(info, function(err, result) {
                    if (err) throw err;
-                   console.log('Saved to database');
+                   console.log(req.body.username + ' saved to database');
                    res.redirect('/');
                  })
                }
@@ -138,18 +139,6 @@ function getRandomPassword(){
   return newPassword;
 }
 
-function getName(email){
-  var name = "";
-  // db.collection('users').count({"email":req.body.email).then((occurrences) => {
-  //     if(occurrences == USER_EXISTS){
-  //       name =
-  //     }
-  //   });
-
-  //not finished
-    return name;
-}
-
 app.get('/forgottenPasswordDetails', function(req,res) {
   nodemailer.createTestAccount((err, account) => {
   var newPassword = getRandomPassword();
@@ -167,12 +156,12 @@ app.get('/forgottenPasswordDetails', function(req,res) {
     debug: false //smtp includes traffic in the logs
   });
 
-  var name = getName(req.body.email); // not finished
   let mailOptions = {
     from: 'munroSpotter@gmail.com',
     to: userEmail,
     subject: 'MunroSpotter new password',
-    text: 'Greetings, Mr/Mrs.+ ' + name +  '\nYour new password is: ' + newPassword
+    text: 'Greetings, Mr/Mrs.+ ' + ' ' +  '\nYour new password is: ' + newPassword
+    //name of user missing above
   }
 
   db.collection('users').count({"email":req.body.email}).then((occurrences) => {
@@ -181,7 +170,6 @@ app.get('/forgottenPasswordDetails', function(req,res) {
           if (error) { console.log(error);}
           console.log('Message sent' );
           console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
         });
       }else{
         console.log('connection not established!');
