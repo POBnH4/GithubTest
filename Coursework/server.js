@@ -158,7 +158,7 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   });
 
   var name = getName(req.body.email); // not finished
-  var userEmail = document.getElementById("forgottenPasswordEmail").value;
+  var userEmail = window.document.getElementById("forgottenPasswordEmail").value;
   let mailOptions = {
     from: 'munroSpotter@gmail.com',
     to: userEmail,
