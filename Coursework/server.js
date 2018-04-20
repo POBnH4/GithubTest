@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const app = express();
 const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
 
-const USERNAME_VALIDITY = new RegExp("[a-zA-Z0-9]{6,18})"); // username = email;
+const USERNAME_VALIDITY = new RegExp("[a-zA-Z0-9]{6,18}"); // username = email;
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
