@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 const app = express();
 const USER_DOES_NOT_EXIST = 0, USER_EXISTS = 1;
 
-const USERNAME_VALIDITY = new RegExp("[a-zA-Z]");
-const EMAIL_VALIDITY = new RegExp("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+const USERNAME_VALIDITY = new RegExp("[a-zA-Z](?=.{6,18})");
+//const EMAIL_VALIDITY = new RegExp("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 const PASSWORD_VALIDITY = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})");
 //the password must contain at least one lowercase letter,
 // one uppercase letter, one digit, and be between 8 and 20 characters;
@@ -41,8 +41,8 @@ app.post('/userDetails', function(req,res) {
   //   console.log(result.name lo);
   //   db.close();
   // });
-    db.collection('users').count({"email": req.body.email, "password" : req.body.password}).then((occurences) => {
-         if(occurences >= USER_EXISTS){
+    db.collection('users').count({"email": req.body.email, "password" : req.body.password}).then((occurrences) => {
+         if(occurrences >= USER_EXISTS){
              req.session.loggedin = true;
              console.log(req.body.email + ' logged in');
              // login in information....
@@ -68,8 +68,8 @@ app.get('/logout', function(req,res){
 
 
        app.post('/registerDetails', function (req,res){
-         db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurences) => {
-             if(occurences == USER_DOES_NOT_EXIST){
+         db.collection('users').count({"email":req.body.email, "password": req.body.password}).then((occurrences) => {
+             if(occurrences == USER_DOES_NOT_EXIST){
 
                if(PASSWORD_VALIDITY.test(req.body.password)){
 
@@ -128,23 +128,36 @@ function getRandomPassword(){
   return newPassword;
 }
 
+function getName(email){
+  var name = "";
+  // db.collection('users').count({"email":req.body.email).then((occurrences) => {
+  //     if(occurrences == USER_EXISTS){
+  //       name =
+  //     }
+  //   });
+
+  //not finished
+    return name;
+}
+
 app.get('/forgottenPasswordDetails', function(req,res) {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   var transporter = nodemailer.createTransport({
-    service: '',
+    service: 'gmail',
     auth: {
-      user: '',
-      pass: ''
+      user: 'munroSpotter@gmail.com', // account username;
+      pass: 'Munrospotter1' // account password;
     }
   });
 
+  var name = getName(req.body.email);
+
   var mailOptions = {
-    from: 'munrospotter@yahoo.com',
+    from: 'munroSpotter@gmail.com',
     to: req.body.email,
     subject: 'MunroSpotter new password',
-    text: 'Greetings, Mr/Mrs.+ ' + 'Your new password is: ' + newPassword
-     // get a person's name from the database and add it after Mr/Mrs.
+    text: 'Greetings, Mr/Mrs.+ ' + name +  '\nYour new password is: ' + newPassword
   }
 
   db.collection('users').count({"email":req.body.email}).then((occurrences) => {
