@@ -83,7 +83,11 @@ nav {
 }
 
 #register-link{
-  margin-left: -50px;
+  margin-left: -30px;
+}
+
+#registerCancelButton{
+  width:100%;
 }
 
 .row h3{
