@@ -144,10 +144,12 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   var newPassword = getRandomPassword();
   console.log(newPassword + " the new password for the user");
   var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false,
     auth: {
-      user: 'munroSpotter@gmail.com', // account username;
-      pass: 'Munrospotter1' // account password;
+      user: account.user, //  munroSpotter@gmail.com account username;
+      pass: account.pass  // account password;
     }
   });
 
@@ -163,11 +165,10 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   db.collection('users').count({"email":req.body.email}).then((occurrences) => {
       if(occurrences >= USER_EXISTS){
         transporter.sendMail(mailOptions, function(error, info){
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Email sent: ' + info.response);
-          }
+          if (error) { console.log(error);}
+          console.log('Message sent: %s', info.messageId);
+          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
         });
       }else{
         console.log('connection not established!');
