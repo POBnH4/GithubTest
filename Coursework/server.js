@@ -78,7 +78,7 @@ app.get('/logout', function(req,res){
                  console.log('Username should be: between 6 and 18 characters(only letters and numbers, no special characters)');
                }
 
-               if(PASSWORD_VALIDITY.test(req.body.password) && correctUsername){
+               if(PASSWORD_VALIDITY.test(req.body.password)){
                 correctPassword = true;
                }else{
                  console.log("Password should contain: 1 lowercase,1 uppercase, 1 digit, between 8 and 20 characters");
