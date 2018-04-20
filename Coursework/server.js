@@ -158,10 +158,10 @@ app.get('/forgottenPasswordDetails', function(req,res) {
   });
 
   var name = getName(req.body.email); // not finished
-
+  var userEmail = document.getElementById("forgottenPasswordEmail");
   let mailOptions = {
     from: 'munroSpotter@gmail.com',
-    to: req.body.email,
+    to: userEmail,
     subject: 'MunroSpotter new password',
     text: 'Greetings, Mr/Mrs.+ ' + name +  '\nYour new password is: ' + newPassword
   }
