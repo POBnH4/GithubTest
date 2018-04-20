@@ -41,7 +41,7 @@ app.post('/userDetails', function(req,res) {
   //   console.log(result.name lo);
   //   db.close();
   // });
-    db.collection('users').count({"name": req.body.username, "password" : req.body.password}).then((occurrences) => {
+    db.collection('users').count({"username": req.body.username, "password" : req.body.password}).then((occurrences) => {
          if(occurrences >= USER_EXISTS){
              req.session.loggedin = true;
              console.log(req.body.username + ' logged in');
